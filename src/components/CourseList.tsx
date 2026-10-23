@@ -34,7 +34,18 @@ function reducer(state: State, action: Action): State {
   switch (action.type) {
     case "add":
       if (state.items.length >= LIMIT) return state;
-n.status };
+      return { ...state, items: [...state.items, action.item], nextId: state.nextId + 1 };
+    case "remove":
+      return { ...state, items: state.items.filter((it) => it.id !== action.id) };
+    case "cycle":
+      return {
+        ...state,
+        items: state.items.map((it) =>
+          it.id === action.id ? { ...it, status: nextStatus(it.status) } : it,
+        ),
+      };
+    case "filter":
+      return { ...state, filter: action.status };
   }
 }
 
