@@ -56,7 +56,15 @@ export function FileCard({ heading = "File Card", initialItems = [], onSelect }:
     nextId: initialItems.length + 1,
   });
 
-
+  const visible = useMemo(
+    () => state.items.filter((it) => state.filter === "all" || it.status === state.filter),
+    [state.items, state.filter],
+  );
+  const fileCount = visible.length;
+  const averageScore = useMemo(
+    () => (visible.length ? visible.reduce((sum, it) => sum + it.score, 0) / visible.length : 0),
+    [visible],
+  );
 
   const handleAdd = useCallback(() => {
     const id = state.nextId;
