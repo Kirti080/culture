@@ -1,24 +1,7 @@
 import { useCallback, useMemo, useReducer } from "react";
 export type BookingStatus = "pending" | "approved" | "rejected";
 
-export interface BookingItem {
-  id: number;
-  title: string;
-  status: BookingStatus;
-  score: number;
-}
-export interface BookingListProps {
-  heading?: string;
-  initialItems?: BookingItem[];
-  onSelect?: (item: BookingItem) => void;
-}
-type Action =
-  | { type: "add"; item: BookingItem }
-  | { type: "remove"; id: number }
-  | { type: "cycle"; id: number }
-  | { type: "filter"; status: BookingStatus | "all" };
-interface State {
-  items: BookingItem[];
+expor
   filter: BookingStatus | "all";
   nextId: number;
 }

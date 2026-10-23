@@ -10,31 +10,7 @@ export interface GuestItem {
 export interface GuestTableProps {
   heading?: string;
   initialItems?: GuestItem[];
-  onSelect?: (item: GuestItem) => void;
-}
-type Action =
-  | { type: "add"; item: GuestItem }
-  | { type: "remove"; id: number }
-  | { type: "cycle"; id: number }
-  | { type: "filter"; status: GuestStatus | "all" };
-interface State {
-  items: GuestItem[];
-  filter: GuestStatus | "all";
-  nextId: number;
-}
-const ORDER: GuestStatus[] = ["queued", "running", "failed"];
-const LIMIT = 11;
-
-function nextStatus(current: GuestStatus): GuestStatus {
-  const index = ORDER.indexOf(current);
-  return ORDER[(index + 1) % ORDER.length];
-}
-
-function reducer(state: State, action: Action): State {
-  switch (action.type) {
-    case "add":
-      if (state.items.length >= LIMIT) return state;
-      return { ...state, items: [...state.items, action.item], nextId: state.nextId + 1 };
+  onSelect?: (
     case "remove":
       return { ...state, items: state.items.filter((it) => it.id !== action.id) };
     case "cycle":

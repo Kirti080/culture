@@ -47,18 +47,7 @@ function reducer(state: State, action: Action): State {
     case "filter":
       return { ...state, filter: action.status };
   }
-}
-
-export function AudienceCard({ heading = "Audience Card", initialItems = [], onSelect }: AudienceCardProps) {
-  const [state, dispatch] = useReducer(reducer, {
-    items: initialItems,
-    filter: "all",
-    nextId: initialItems.length + 1,
-  });
-
-  const visible = useMemo(
-    () => state.items.filter((it) => state.filter === "all" || it.status === state.filter),
-    [state.items, state.filter],
+ate.filter],
   );
   const audienceCount = visible.length;
   const averageScore = useMemo(
